@@ -40,7 +40,6 @@ format: ##> formats the code
 	find include test -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i
 
 .PHONY: docker-run
-docker-run: ##> runs the docker container for dev and test
-	echo "WIP"
-#	(cd .devcontainer && make build run)
-#	docker pull from github repo since it's already built
+docker-run: ##> pulls and runs the docker container for dev and test
+	docker pull ghcr.io/nrockwood/devcontainer:latest
+	docker run --rm -it -w /workspace -v $(shell pwd):/workspace ghcr.io/nrockwood/devcontainer /bin/zsh
