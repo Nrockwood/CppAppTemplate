@@ -22,6 +22,10 @@ build: ##> builds the project
 	mkdir -p build
 	(cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make)
 
+.PHONY: run
+run: ##> runs the project
+	./build/ExampleApp
+
 .PHONY: clean
 clean: ##> removes the build files
 	mkdir -p build
@@ -34,3 +38,9 @@ test: ##> runs the unit tests
 .PHONY: format
 format: ##> formats the code
 	find include test -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i
+
+.PHONY: docker-run
+docker-run: ##> runs the docker container for dev and test
+	echo "WIP"
+#	(cd .devcontainer && make build run)
+#	docker pull from github repo since it's already built

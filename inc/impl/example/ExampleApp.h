@@ -14,6 +14,8 @@
 
 #include "interfaces/example/IExampleInterface.h"
 
+#include <cstdint>
+
 using namespace foo;
 
 ////////////////////////////////////////////////////////////

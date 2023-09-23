@@ -9,7 +9,7 @@
 ///  
 ////////////////////////////////////////////////////////////
 
-#include "example/ExampleApp.h"
+#include "impl/example/ExampleApp.h"
 
 #include <iostream>
 
@@ -29,6 +29,8 @@ void ExampleApp::initApp()
 void ExampleApp::run()
 {
     printHelloWorld();
+
+    std::cout << "It is currently " << currentTime() << std::endl;
 
     int64_t whatIsTheMeaningOfLife = 0;
     calculateSum(2, 40, whatIsTheMeaningOfLife);
