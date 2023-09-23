@@ -1,17 +1,36 @@
-.PHONY: all configure build test format
+.DEFAULT_GOAL := help
 
-all: configure build test format
+define HELP
+print('\nUsage: make \033[92m[target]\033[0m\n')
+with open('Makefile') as f:
+	for line in f.readlines():
+		if 'elif' in line or 'print' in line: continue
+		if line.startswith('#>'):
+			print(line.strip()[3:])
+		elif ': ##> ' in line:
+			print('    \033[92m{}\033[0m - {}'.format(*line.strip().split(': ##> ')))
+print('')
+endef
+export HELP
 
-configure:
+.PHONY: help
+help: ##> print the usage message
+	@python3 -c "$$HELP"
+
+.PHONY: build
+build: ##> builds the project
 	mkdir -p build
-	(cd build && cmake -DCMAKE_BUILD_TYPE=Debug ..)
+	(cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make)
 
-build:
+.PHONY: clean
+clean: ##> removes the build files
 	mkdir -p build
-	(cd build && make)
+	(cd build && make clean)
 
-test:
+.PHONY: test
+test: ##> runs the unit tests
 	./build/bin/unit_tests --gtest_shuffle
 
-format:
+.PHONY: format
+format: ##> formats the code
 	find include test -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i

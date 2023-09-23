@@ -10,6 +10,17 @@ ssh-keygen -t rsa -b 4096
 
 ### Clone Repo
 ```bash
-git clone --recursive git clone git@github.com:Nrockwood/CppAppTemplate.git
+git clone --recursive git@github.com:Nrockwood/CppAppTemplate.git
 ```
 
+## Tests
+Run the tests with
+```bash
+make build test
+```
+
+## Dev
+To see a list of commonly used tasks you may use during development of this project run
+```bash
+make
+```
